@@ -17,7 +17,7 @@ class ReferenceLoader(api.Loader):
     
     def load(self, context, name=None, namespace=None, data=None):
 
-        # todo: batch commands!!
+        # todo: clarisse ix batch commands?
         
         filepath = self.fname
     
@@ -47,14 +47,9 @@ class ReferenceLoader(api.Loader):
         node = container["node"]
         filepath = api.get_representation_path(representation)
 
-        import os
-        print(filepath)
-        print(os.path.exists(filepath))
-
         # Command fails on unicode so we must force it to be strings
         # todo: can we do a better conversion, e.g. f.decode("utf8")
         filepath = str(filepath)
-        nodename = node.get_full_name()
         ix.cmds.SetReferenceFilename([node], filepath)
         
         # todo: do we need to explicitly trigger reload?
